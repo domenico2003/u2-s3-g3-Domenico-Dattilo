@@ -1,0 +1,15 @@
+nav{
+    background-color: #c29467;
+    z-index: 999;
+}
+
+.card img{
+    max-height: 60%;
+    height: 100%;
+    
+}
+
+.card{
+    height: 100%;
+}
+
