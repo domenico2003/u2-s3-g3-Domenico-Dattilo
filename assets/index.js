@@ -3,6 +3,26 @@ let targetCard =document.querySelector(".target")
 let arrayCarrello=[]
 const KAY_STORAGE="carrello"
 
+let verificaAcquisti = function(){
+    let stringaObj=localStorage.getItem(KAY_STORAGE)
+    let oggettoParsato=null
+    oggettoParsato=JSON.parse(stringaObj)
+    
+    
+    if(oggettoParsato){
+        let numeroOggetti
+        numeroOggetti =(oggettoParsato.length) 
+        return numeroOggetti
+    }else{
+        return 0
+    }
+}
+
+let badge = document.querySelector("#rounded-cart")
+badge.textContent=verificaAcquisti()
+
+
+
 fetch("https://striveschool-api.herokuapp.com/books")
     .then(risposta=>{
         if(risposta.ok){
@@ -81,10 +101,13 @@ let visualizzaCard =(array)=>{
              targetCard.appendChild(coll)
 
         
-        
+        let badge = document.querySelector("#rounded-cart")
         acquista.onclick= ()=>{
+            
             arrayCarrello.push(element)
             
+            localStorage.setItem(KAY_STORAGE,JSON.stringify(arrayCarrello))
+            badge.textContent=verificaAcquisti()
          }
          });
 
